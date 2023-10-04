@@ -1,0 +1,29 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/homenavbar.ejs') %>
+
+<body>
+    <div class="container">
+        <hr>
+        <% if (articles && articles.length > 0) { %>
+            <% articles.forEach(article => { %>
+                <div class="card">
+                    <div class="card-header">
+                        <h2><%= article.title %></h2>
+                    </div>
+                    <br>
+                    <div class="card-body">
+                        <a href="/<%= article.slug %>" class="btn btn-success">Ler Artigo</a>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>Nenhum artigo encontrado.</p>
+        <% } %>
+        <div class="row">
+            <div class="col col-12">
+                <a style="float: right;" href="/articles/page/2">Proximo >></a>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('partials/footer.ejs') %>

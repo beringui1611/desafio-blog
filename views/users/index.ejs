@@ -1,0 +1,50 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+<div class="container">
+<hr>
+<h2>Usuarios</h2>
+<a href="/admin/users/create" class="btn btn-success"> Criar Novo Usuario</a>
+<hr>
+<table class="table table-bordered">
+<thead>
+    <tr>
+        <th>Id</th>
+        <th>Email</th>
+     
+      
+    </tr>
+</thead>
+<tbody>
+
+    <% users.forEach(user =>{ %>
+        <tr>
+           <td><%= user.id %></td>
+           <td><%= user.email %></td>
+        </tr>
+   <% }) %>
+
+       
+
+   
+</tbody>
+</table>
+</div>
+<%- include('../partials/footer.ejs') %>
+<script>
+    function approveDelete(event, form){
+event.preventDefault()
+
+ const decisao = confirm("Você quer deletar essa categoria?")
+
+ if(decisao){
+  form.submit()
+ }
+    }
+</script>
+
+     
+
+<%- include('../partials/footer.ejs') %>

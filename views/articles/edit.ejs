@@ -1,0 +1,46 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>Editar Artigo</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/articles/update">
+                <input class="form-control" type="text" name="title" placeholder="Defina o título do artigo" value="<%= article.title %>">
+                <input type="hidden" name="id" value="<%= article.id %>">
+                <br>
+                <textarea class="form-control" placeholder="Escreva o artigo aqui" name="body" id="article">
+                    <%= article.body %>
+                </textarea>
+                <label>Categorias</label>
+                <select name="category" class="form-control">
+                    <% categories.forEach(category => { %>
+                        <option value="<%= category.id %>" <%= (category.id === article.categoryId) ? 'selected' : '' %>>
+                            <%= category.title %>
+                        </option>
+                    <% }) %>
+                </select>
+                <br>
+                <button class="btn btn-success">Atualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: "#article",
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount image',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat | image | media | language',
+        language: 'pt_BR',
+        image_class_list: [{ title: 'Full size', value: 'great_picture_of_the_article' }],
+        image_dimensions: false,
+        link_class_list: [{ title: 'Formatted link', value: 'link_to_external_site' }],
+    });
+</script>
